@@ -1,1 +1,54 @@
 <?xml version = "1.0" encoding="UTF-8"?>
+<mision>
+    
+    <identificacion codigoMision="M123ab">
+        <descripcion>
+            La misión consiste en <keyword> reparar </keyword> una <keyword> conexión 
+            </keyword> de <keyword> una torre de media tensión </keyword> del Campus Sur 
+        </descripcion>
+    </identificacion>
+
+    <drone matriculaDron="abcde1"> <!--cinco caracteres con el numero de identificacion  -->
+        <claseDron>
+            controlado 6 <!-- monotorizado, controlado o autonomo y luego un nuemro entero -->
+        </claseDron>
+
+        <homologaciones><!-- uno o varios-->
+            <nacional>Madrid</nacional>
+            <internacional>España</internacional>
+        </homologaciones>
+        
+        <configuracionDron>
+            <sensores> <!-- elemento opcional-->
+                <numeroSensores> 6 </numeroSensores> 
+                <sensor idSensor= "SEN4-sm">
+                <elementoSensado> salinidad del agua </elementoSensado>
+                <rango>1.5 15.75 5</rango> <!-- lista de 3 numeros, ya sean enteros o con decimales-->
+                </sensor>
+            </sensores>
+            
+           <actuadores>
+                <numeroActuadores> 7 </numeroActuadores>
+                <actuador idActiador= "AC$03">
+                    <alcanceActuacion>
+                        <tipoActuacion> especificaLaActuacion </tipoActuacion>
+                        <fechasActuacion> 2000-12-21 2023-02-24 </fechasActuacion>
+                    </alcanceActuacion>
+                </actuador>
+           </actuadores>
+        </configuracionDron>
+    </drone>
+    <tareas>
+        <descripcionTarea>
+            tipo de cadena de caracteres
+        </descripcionTarea>
+        <responsableTarea>
+            <email>
+    
+            </email>
+            <url>
+
+            </url>
+        </responsableTarea>
+    </tareas>
+</mision>
