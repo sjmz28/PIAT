@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.piat.upm.es/actuadoresSchema"
+    xmlns:tns="http://www.piat.upm.es/actuadoresSchema">
+
+    <xsd:element name="actuadores">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="nuemroActuadores" type="xsd:integer" maxOccurs="1" minOccurs="1"/>
+                <xsd:element name="actuador">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="idActuador" type="tns:idActuadoresType"/>
+                            <xsd:element name="alcanceActuacion" > <!-- elemento opcional-->
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="tipoActuacion" type="xsd:string"></xsd:element>
+                                        <xsd:element name="fechasActuacion" type="tns:fechasActuacionType"></xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="matriculaDron" type="tns:matriculaDronType" use="required"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:simpleType name="idActuadoresType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z]{2}-[$]-[0-9]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="tipoFechasActuacion"> 
+        <xsd:list itemType="xsd:date"/>         
+    </xsd:simpleType>
+    <xsd:simpleType name="fechasActuacionType">
+        <xsd:restriction base="tns:tipoFechasActuacion">
+            <xsd:length value="3"/> <!-- WTF-->
+         </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="matriculaDronType">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="5"/>   <!-- nos pide tmb el numero de indentificacion, preguntar como se pone -->
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
