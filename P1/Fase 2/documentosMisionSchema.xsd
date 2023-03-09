@@ -9,7 +9,13 @@ xmlns:tns="http://www.piat.upm.es/documentosMisionSchema">
             <xsd:element name="metadatos">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="identificacion"></xsd:element>
+                        <xsd:element name="identificacion">
+                            <xsd:complexType>
+                                <xsd:attribute name="version" type="tns:versionType" use="required"></xsd:attribute>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="propietario" type=""></xsd:element>
+
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -17,4 +23,11 @@ xmlns:tns="http://www.piat.upm.es/documentosMisionSchema">
         </xsd:sequence>
     </xsd:complexType>    
     </xsd:element>
+
+    <xsd:simpleType name="versionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z0-9]{4}"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
 </xsd:schema>
