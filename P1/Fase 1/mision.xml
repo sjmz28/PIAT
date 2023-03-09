@@ -22,8 +22,8 @@
             <sensores> <!-- elemento opcional-->
                 <numeroSensores> 6 </numeroSensores> 
                 <sensor idSensor= "SEN4-sm">
-                <elementoSensado> salinidad del agua </elementoSensado>
-                <rango>1.5 15.75 5</rango> <!-- lista de 3 numeros, ya sean enteros o con decimales-->
+                    <elementoSensado> salinidad del agua </elementoSensado>
+                    <rango>1.5 15.75 5</rango> <!-- lista de 3 numeros, ya sean enteros o con decimales-->
                 </sensor>
             </sensores>
             

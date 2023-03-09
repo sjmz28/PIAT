@@ -3,22 +3,21 @@
     targetNamespace="http://www.piat.upm.es/sensoresSchema"
     xmlns:tns="http://www.piat.upm.es/sensoresSchema">
 
-    <xsd:element name="sensoresSchema">
-    
-    <xsd:complexType>
-        <xsd:sequence>
-            <xsd:element name="numeroSensores" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="sensor">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="elementoSensado" type="xsd:string" minOccurs="1"/>
-                        <xsd:element name="rango" type="tns:rangoType"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-        </xsd:sequence>
-        <xsd:attribute name="idSensor" type="tns:idSensorType" use="required"></xsd:attribute>
-    </xsd:complexType>  
+    <xsd:element name="sensores">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="numeroSensores" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="sensor">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="elementoSensado" type="xsd:string" minOccurs="1"/>
+                            <xsd:element name="rango" type="tns:rangoType"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="idSensor" type="tns:idSensorType" use="required"></xsd:attribute>
+        </xsd:complexType>  
     </xsd:element>
 
     <xsd:simpleType name="idSensorType">
@@ -30,6 +29,7 @@
     <xsd:simpleType name="tipoRango"> 
         <xsd:list itemType="xsd:double"/>         
     </xsd:simpleType>
+    
     <xsd:simpleType name="rangoType">
         <xsd:restriction base="tns:tipoRango">
             <xsd:length value="3"/>        

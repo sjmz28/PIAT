@@ -3,7 +3,8 @@
     targetNamespace="http://www.piat.upm.es/tareaSchema"
     xmlns:tns="http://www.piat.upm.es/tareaSchema">
 
-    <xsd:complexType name="tareaType">
+<xsd:element name="tareaSchema">
+    <xsd:complexType>
         <xsd:sequence>
             <xsd:element name="descripcionTarea" type="xsd:string" minOccurs="1"/>
             <xsd:element name="responableTarea" minOccurs="0" maxOccurs="unbounded">
@@ -43,6 +44,8 @@
         <xsd:attribute name="idTarea" type="tns:idTareaType"></xsd:attribute>
     </xsd:complexType>
 
+</xsd:element>
+
     <xsd:simpleType name="tipoprofundidad"> 
         <xsd:list itemType="xsd:double"/>         
     </xsd:simpleType>
@@ -67,5 +70,5 @@
     </xsd:simpleType>
 
     
-    
+
 </xsd:schema>
