@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.piat.upm.es/documentosMisionSchema"
+xmlns:tns="http://www.piat.upm.es/documentosMisionSchema">
+    
+    <xsd:element name="documentosMisionSchema">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="metadatos">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="identificacion"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="datosMision" type="xsd:string" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>    
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.piat.upm.es/tareaSchema"
+    xmlns:tns="http://www.piat.upm.es/tareaSchema">
+
+    <xsd:complexType name="tareaType">
+        <xsd:sequence>
+            <xsd:element name="descripcionTarea" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="responableTarea" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="email" type="xsd:string" maxOccurs="unbounded"/><!-- no puede haber dos iguales-->
+                        <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="dronesTarea" minOccurs="1" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="matricula" type="xsd:string"/>
+                        <xsd:element name="actividadMision" type="xsd:string"/>
+                        <!-- no puede haber dos dornes con la misma matricula o tarea-->
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="areaGeografica">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="centro" minOccurs="1">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="longitud" type="xsd:double"/>
+                                    <xsd:element name="latitud" type="xsd:double"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="profundidad" type="tns:profundidadType" minOccurs="1"/>
+                        <xsd:element name="forma" type="tns:formaType" minOccurs="1"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="idTarea" type="tns:idTareaType"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:simpleType name="tipoprofundidad"> 
+        <xsd:list itemType="xsd:double"/>         
+    </xsd:simpleType>
+    <xsd:simpleType name="profundidadType">
+        <xsd:restriction base="tns:tipoprofundidad">
+            <xsd:length value="2"/>        
+         </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="formaType">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="esfera"/>
+            <xsd:enumeration value="cilindro"/>
+            <xsd:enumeration value="paralelepípedo"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="idTareaType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="TAR-[0-9]{5}"></xsd:pattern> <!-- tiene qur ser un valor unico-->
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    
+    
+</xsd:schema>
