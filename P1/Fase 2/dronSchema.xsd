@@ -14,13 +14,13 @@
 
         <xsd:complexType name="dronType">
             <xsd:sequence>
-                <xsd:element name="claseDron" minOccurs="1">
-                    <xsd:complexType>
+                <xsd:element name="claseDron" type="tns:putaListaclaseDron" minOccurs="1">
+                    <!-- <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="tipoDron" type="tns:tipoDronType"/>
                             <xsd:element name="numMotores" type="xsd:integer"/> 
                         </xsd:sequence>
-                    </xsd:complexType>
+                    </xsd:complexType> -->
 
                 </xsd:element>
                 <xsd:element name="homologaciones" minOccurs="1">
@@ -45,6 +45,9 @@
         </xsd:complexType>
         
 
+    <xsd:simpleType name="claseDronType">
+        <xsd:union memberTypes="tns:tipoDronType xsd:integer"/>
+    </xsd:simpleType>
 
     <xsd:simpleType name="tipoDronType">
         <xsd:restriction base="xsd:token">
@@ -52,6 +55,10 @@
             <xsd:enumeration value="contolado"/>
             <xsd:enumeration value="monotorizado"/>
         </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="putaListaclaseDron">
+        <xsd:list itemType="tns:claseDronType"/>
     </xsd:simpleType>
 
     <xsd:simpleType name="matriculaDronType">
