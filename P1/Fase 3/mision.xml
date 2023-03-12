@@ -6,67 +6,30 @@
             
             xmlns:tns="http://www.piat.upm.es/misionSchema"
             xsi:schemaLocation="http://www.piat.upm.es/misionSchema ../Fase%202/misionSchema.xsd">
-    <tns:identificacion codigoMision="M123ac">
-        <ide:descripcion>
-            <tarea>
-                <descripcionTarea></descripcionTarea>
-                <dronesTarea>
-                    <matricula></matricula>
-                    <actividadMision></actividadMision>
-                </dronesTarea>
-                <areaGeografica>
-                    <centro>
-                        <longitud></longitud>
-                        <latitud></latitud>
-                    </centro>
-                    <profundidad></profundidad>
-                    <forma>esfera</forma>
-                </areaGeografica>
-            </tarea>
-            <dron matriculaDron="">
-                <claseDron></claseDron>
-                <homologaciones>
-                    <nacional></nacional>
-                    <internacional></internacional>
-                </homologaciones>
-                <configuracionDron>
-                    <actuadores matriculaDron="">
-                        <nuemroActuadores></nuemroActuadores>
-                        <actuador>
-                            <idActuador></idActuador>
-                            <alcanceActuacion>
-                                <tipoActuacion></tipoActuacion>
-                                <fechasActuacion></fechasActuacion>
-                            </alcanceActuacion>
-                        </actuador>
-                    </actuadores>
-                    <sensores idSensor="">
-                        <numeroSensores></numeroSensores>
-                        <sensor>
-                            <elementoSensado></elementoSensado>
-                            <rango></rango>
-                        </sensor>
-                    </sensores>
-                </configuracionDron>
-            </dron>
-            <identificacion codigoMision="">
-            </identificacion>
-            <sensores idSensor="">
-                <numeroSensores></numeroSensores>
-            </sensores>
-            <actuadores matriculaDron="">
-                <nuemroActuadores></nuemroActuadores>
-            </actuadores>
-        </ide:descripcion>
+    <tns:identificacion codigoMision="M123ab">
+        <ide:descripcion> Esto es una prueba</ide:descripcion>
     </tns:identificacion>
     <tns:drones>
-        <dr:dron matriculaDron="">
-            <dr:claseDron></dr:claseDron>
-        </dr:dron>
+        <tns:dron matriculaDron="sjmz5">
+            <dr:claseDron>autónomo 6</dr:claseDron>
+            <dr:homologaciones>
+                <dr:nacional>Madrid</dr:nacional>
+            </dr:homologaciones>
+            <dr:configuracionDron>
+                <dr:sensores>
+                    <sen:numeroSensores>7</sen:numeroSensores>
+                    <sen:rango></sen:rango>
+                    <sen:sensor idSensor="SEN4-sm">
+                        <sen:elementoSensado>
+                    </sen:elementoSensado>
+                    </sen:sensor>
+                </dr:sensores>
+            </dr:configuracionDron>
+        </tns:dron>
     </tns:drones>
-    <tns:tareas>
-        <tns:tarea>
-            <descripcionTarea></descripcionTarea>
-        </tns:tarea>
-    </tns:tareas>
+
+
+
+
+
 </tns:mision>
