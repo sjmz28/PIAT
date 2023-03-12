@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.piat.upm.es/generalMisionSchema"
+    xmlns:tns="http://www.piat.upm.es/generalMisionSchema"
+    
+    xmlns:mis="http://www.piat.upm.es/misionSchema"
+    xmlns:doc="http://www.piat.upm.es/identificacionSchema"
+    xmlns:prop="http://www.piat.upm.es/propietarioSchema">
+
+    <xsd:import namespace="http://www.piat.upm.es/misionSchema" schemaLocation="./misionShema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"/>
+
+    <xsd:element name="generalMisionSchema">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="mision" type="mis:misionType"/>
+                <xsd:element name="documentosMision" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="identificacion" type="doc:identificacionType"/>
+                        </xsd:sequence>
+                        <xsd:attribute name="numeroOrden" type="xsd:integer" use="required"/>
+                        <xsd:attribute name="propietario" type="prop:identificadorFiscalType" use="required"/>
+                    </xsd:complexType> 
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
