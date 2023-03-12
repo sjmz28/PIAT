@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.piat.upm.es/identificacionSchema" 
-    xmlns:tns="http://www.piat.upm.es/identificacionSchema">
+    xmlns:tns="http://www.piat.upm.es/identificacionSchema"
+    elementFormDefault="qualified">
 
-    <xsd:element name="identificacionSchema" type="tns:identificacionType"/>
+    <xsd:element name="identificacion" type="tns:identificacionType"/>
 
         <xsd:complexType name="identificacionType">
             <xsd:sequence>
@@ -22,7 +23,7 @@
         
     <xsd:simpleType name="codigoMisionType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[A-Z][0-9]{3}[a-z]{3}"/>
+            <xsd:pattern value="[A-Z][0-9]{3}[a-z]{2}"/>
         </xsd:restriction>
     </xsd:simpleType>
 

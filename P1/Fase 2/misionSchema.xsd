@@ -5,13 +5,14 @@ xmlns:tns="http://www.piat.upm.es/misionSchema"
 
 xmlns:ident="http://www.piat.upm.es/identificacionSchema"
 xmlns:dr="http://www.piat.upm.es/dronSchema"
-xmlns:tar="http://www.piat.upm.es/tareaSchema">
+xmlns:tar="http://www.piat.upm.es/tareaSchema"
+elementFormDefault="qualified">
 
 <xsd:import namespace="http://www.piat.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
 <xsd:import namespace="http://www.piat.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
 <xsd:import namespace="http://www.piat.upm.es/tareaSchema" schemaLocation="./tareaSchema.xsd"/>
 
-    <xsd:element name="misionSchema" type="tns:misionType"/>
+    <xsd:element name="mision" type="tns:misionType"/>
 
     <xsd:complexType name="misionType">
         <xsd:sequence>

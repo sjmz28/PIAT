@@ -4,12 +4,13 @@ targetNamespace="http://www.piat.upm.es/documentoMisionSchema"
 xmlns:tns="http://www.piat.upm.es/documentoMisionSchema"
 
 xmlns:prop="http://www.piat.upm.es/propietarioSchema"
-xmlns:imag="http://www.piat.upm.es/imagenSchema">
+xmlns:imag="http://www.piat.upm.es/imagenSchema"
+elementFormDefault="qualified">
 
 <xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"/>
 <xsd:import namespace="http://www.piat.upm.es/imagenSchema" schemaLocation="./imagenSchema.xsd"/>
     
-    <xsd:element name="documentoMisionSchema" type="tns:documentoMisionType"/>
+    <xsd:element name="documentoMision" type="tns:documentoMisionType"/>
     
     <xsd:complexType name="documentoMisionType">
         <xsd:sequence>

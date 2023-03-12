@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.piat.upm.es/sensoresSchema"
-    xmlns:tns="http://www.piat.upm.es/sensoresSchema">
+    xmlns:tns="http://www.piat.upm.es/sensoresSchema"
+    elementFormDefault="qualified">
 
     <xsd:element name="sensores" type="tns:sensoresType"/>
 
@@ -15,10 +16,10 @@
                             <xsd:element name="elementoSensado" type="xsd:string" minOccurs="1"/>
                             <xsd:element name="rango" type="tns:rangoType"/>
                         </xsd:sequence>
+                        <xsd:attribute name="idSensor" type="tns:idSensorType" use="required"></xsd:attribute>
                     </xsd:complexType>
                 </xsd:element>
             </xsd:sequence>
-            <xsd:attribute name="idSensor" type="tns:idSensorType" use="required"></xsd:attribute>
         </xsd:complexType>  
     
 

@@ -5,13 +5,15 @@
     
     xmlns:mis="http://www.piat.upm.es/misionSchema"
     xmlns:doc="http://www.piat.upm.es/identificacionSchema"
-    xmlns:prop="http://www.piat.upm.es/propietarioSchema">
+    xmlns:prop="http://www.piat.upm.es/propietarioSchema"
+    
+    elementFormDefault="qualified">
 
-    <xsd:import namespace="http://www.piat.upm.es/misionSchema" schemaLocation="./misionShema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/misionSchema" schemaLocation="./misionSchema.xsd"/>
     <xsd:import namespace="http://www.piat.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
     <xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"/>
 
-    <xsd:element name="generalMisionSchema">
+    <xsd:element name="generalMision">
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="mision" type="mis:misionType"/>

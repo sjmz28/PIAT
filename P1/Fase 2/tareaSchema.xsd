@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.piat.upm.es/tareaSchema"
-    xmlns:tns="http://www.piat.upm.es/tareaSchema">
+    xmlns:tns="http://www.piat.upm.es/tareaSchema"
 
-<xsd:element name="tareaSchema" type="tns:tareaType">
+    xmlns:act="http://www.piat.upm.es/dronSchema"
+    elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
+
+<xsd:element name="tarea" type="tns:tareaType">
 
 </xsd:element>
     <xsd:complexType name="tareaType">

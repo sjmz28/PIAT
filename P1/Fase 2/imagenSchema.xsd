@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 targetNamespace="http://www.piat.upm.es/imagenSchema"
-xmlns:tns="http://www.piat.upm.es/imagenSchema">
+xmlns:tns="http://www.piat.upm.es/imagenSchema"
+elementFormDefault="qualified">
+
+    <xsd:element name="imagen" type="tns:imagenType"/>
 
     <xsd:complexType name="imagenType">
         <xsd:sequence>

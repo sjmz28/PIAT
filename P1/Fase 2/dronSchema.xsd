@@ -10,7 +10,7 @@
     <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
     <xsd:import namespace="http://www.piat.upm.es/sensoresSchema" schemaLocation="./sensoresSchema.xsd"/>
 
-    <xsd:element name="dronSchema" type="tns:dronType"/>
+    <xsd:element name="dron" type="tns:dronType"/>
 
         <xsd:complexType name="dronType">
             <xsd:sequence>
@@ -25,7 +25,7 @@
                 </xsd:element>
                 <xsd:element name="homologaciones" minOccurs="1">
                     <xsd:complexType>
-                        <xsd:choice minOccurs="1"> 
+                        <xsd:choice minOccurs="1" maxOccurs="unbounded"> 
                             <xsd:element name="nacional" type="xsd:string"/>
                             <xsd:element name="internacional" type="xsd:string"/> 
                         </xsd:choice>
@@ -35,8 +35,8 @@
                 <xsd:element name="configuracionDron"> 
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="actuadores" type="act:actuadoresType"/>
                             <xsd:element name="sensores" type="sen:sensoresType"/>
+                            <xsd:element name="actuadores" type="act:actuadoresType"/>
                         </xsd:sequence>
                      </xsd:complexType>
                 </xsd:element>
