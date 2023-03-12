@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.piat.upm.es/imagenSchema"
+xmlns:tns="http://www.piat.upm.es/imagenSchema">
+
+    <xsd:complexType name="imagenType">
+        <xsd:sequence>
+            <xsd:element name="idImagen" type="tns:idImagenType"/>             
+            <xsd:element name="dimensiones">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ancho" type="xsd:double" minOccurs="1"/>
+                        <xsd:element name="alto" type="xsd:double" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="descripcion" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="contenido" type="xsd:base64Binary"/>
+        </xsd:sequence>
+    <xsd:attribute name="idDM" type="xsd:integer" use="required"/> <!-- tomará valor unico entre los elementos del documento-->
+    </xsd:complexType>
+
+    <xsd:simpleType name="idImagenType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="IMAG[0-9]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- FIN DEL ESQUEMA-->
+</xsd:schema>

@@ -3,26 +3,28 @@
     targetNamespace="http://www.piat.upm.es/identificacionSchema" 
     xmlns:tns="http://www.piat.upm.es/identificacionSchema">
 
-    <xsd:element name="identificacionSchema">
-        <xsd:complexType>
+    <xsd:element name="identificacionSchema" type="tns:identificacionType"/>
+
+        <xsd:complexType name="identificacionType">
             <xsd:sequence>
-                <xsd:element name="codigoMision" type="tns:codigoMisionType"/> <!-- WTF-->
-                <xsd:element name="descripcion"></xsd:element> <!-- Ni puta idea, preguntar-->
+                <xsd:element name="descripcion"/> 
             </xsd:sequence>
+            <xsd:attribute name="codigoMision" type="tns:codigoMisionType" use="required"/>
         </xsd:complexType>
-    </xsd:element>
+    
+    <xsd:simpleType name="descripcionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="2"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+
+    </xsd:simpleType>
         
     <xsd:simpleType name="codigoMisionType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[A-Z]-[0-9]{3}-[a-z]{3}"/>
+            <xsd:pattern value="[A-Z][0-9]{3}[a-z]{3}"/>
         </xsd:restriction>
     </xsd:simpleType>
-
-
-
-
-
-
 
 
 </xsd:schema>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.piat.upm.es/documentoMisionSchema"
+xmlns:tns="http://www.piat.upm.es/documentoMisionSchema"
+
+xmlns:prop="http://www.piat.upm.es/propietarioSchema"
+xmlns:imag="http://www.piat.upm.es/imagenSchema">
+
+<xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"/>
+<xsd:import namespace="http://www.piat.upm.es/imagenSchema" schemaLocation="./imagenSchema.xsd"/>
+    
+    <xsd:element name="documentoMisionSchema" type="tns:documentoMisionType"/>
+    
+    <xsd:complexType name="documentoMisionType">
+        <xsd:sequence>
+            <xsd:element name="metadatos">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="identificacion">
+                            <xsd:complexType>
+                                <xsd:attribute name="version" type="tns:versionType" use="required"/>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="propietario" type="prop:propietarioType"/>
+                        
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="datosMision" type="tns:datosMisionType" minOccurs="1" maxOccurs="unbounded"/> 
+        </xsd:sequence>
+    </xsd:complexType>    
+    
+
+    <xsd:simpleType name="versionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z0-9]{4}"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="datosMisionType">
+        <xsd:sequence>
+            <xsd:element name="descripcionDM" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="formatoDatos" type="tns:formatoDatosType" minOccurs="1"/>
+            <xsd:element name="lenguaje" type="tns:languageType" minOccurs="0" maxOccurs="1"/> 
+            <xsd:element name="fecha" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datosSensores" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="datosActuadores" type="xsd:string"/>
+            <xsd:element name="imagen" type="imag:imagenType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="languageType">
+        <xsd:restriction base="xsd:language"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="formatoDatosType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="XML"/>
+            <xsd:enumeration value="JSON"/>
+            <xsd:enumeration value="XSLX"/>
+            <xsd:enumeration value="CSV"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- fin del esquema-->
+
+</xsd:schema>

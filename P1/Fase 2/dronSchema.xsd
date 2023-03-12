@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.piat.upm.es/dronSchema"
-    xmlns:tns="http://www.piat.upm.es/dronSchema">
+    xmlns:tns="http://www.piat.upm.es/dronSchema"
 
-    <xsd:element name="dronSchema">
-        <xsd:complexType>
+    xmlns:act="http://www.piat.upm.es/actuadoresSchema"
+    xmlns:sen="http://www.piat.upm.es/sensoresSchema"
+    elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/sensoresSchema" schemaLocation="./sensoresSchema.xsd"/>
+
+    <xsd:element name="dronSchema" type="tns:dronType"/>
+
+        <xsd:complexType name="dronType">
             <xsd:sequence>
                 <xsd:element name="claseDron" minOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="tipoDron" type="tns:tipoDronType"></xsd:element>
-                            <xsd:element name="numMotores" type="xsd:integer"></xsd:element> 
+                            <xsd:element name="tipoDron" type="tns:tipoDronType"/>
+                            <xsd:element name="numMotores" type="xsd:integer"/> 
                         </xsd:sequence>
                     </xsd:complexType>
+
                 </xsd:element>
                 <xsd:element name="homologaciones" minOccurs="1">
                     <xsd:complexType>
-                        <xsd:sequence>
+                        <xsd:choice minOccurs="1"> 
                             <xsd:element name="nacional" type="xsd:string"/>
-                            <xsd:element name="internacional" type="xsd:string"/> <!-- DUDA pueden aparecer simultaneamente y de cualquier orden, MODELARLO-->
-                        </xsd:sequence>
+                            <xsd:element name="internacional" type="xsd:string"/> 
+                        </xsd:choice>
                     </xsd:complexType>
                 </xsd:element>
-                <!-- AQUI IRIA EL ELEMETO DEL CONFIGURACION DRON-->
+
+                <xsd:element name="configuracionDron"> 
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="actuadores" type="act:actuadoresType"/>
+                            <xsd:element name="sensores" type="sen:sensoresType"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                </xsd:element>
             </xsd:sequence>
             <xsd:attribute name="matriculaDron" type="tns:matriculaDronType" use="required"/>
         </xsd:complexType>
         
-    </xsd:element>
+
 
     <xsd:simpleType name="tipoDronType">
         <xsd:restriction base="xsd:token">
@@ -39,9 +56,9 @@
 
     <xsd:simpleType name="matriculaDronType">
         <xsd:restriction base="xsd:string">
-            <xsd:length value="5"></xsd:length>
+            <xsd:length value="5"/>
         </xsd:restriction>
     </xsd:simpleType>
 
-  
+  <!-- fin de esquema -->
 </xsd:schema>
