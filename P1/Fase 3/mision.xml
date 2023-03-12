@@ -39,19 +39,24 @@
         </tns:dron>
     </tns:drones>
     <tns:tareas>
-        <act:tarea idTarea="TAR-12345">
-            <act:descripcionTarea>Medir la salinidad del agua</act:descripcionTarea>
-            <act:responableTarea>
-                <act:email>s.jmunoz@alumnos.upm.es</act:email>
-                <act:url>www.upm.es</act:url>
-            </act:responableTarea>
-            <act:dronesTarea>
-                <act:matricula></act:matricula>
-            </act:dronesTarea>
-        </act:tarea>
+        <tns:tarea idTarea="TAR-12345">
+            <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
+            <tar:responableTarea>
+                <tar:email>s.jmunoz@alumnos.upm.es</tar:email>
+                <tar:url>www.upm.es</tar:url>
+            </tar:responableTarea>
+            <tar:dronesTarea>
+                <tar:matricula>ABCD5</tar:matricula>
+                <tar:actividadMision>Medir la salinidad</tar:actividadMision>
+            </tar:dronesTarea>
+            <tar:areaGeografica>
+                <tar:centro>
+                    <tar:longitud>26.6803</tar:longitud>
+                    <tar:latitud>26.6803</tar:latitud>
+                </tar:centro>
+                <tar:profundidad>3.45 23.22</tar:profundidad>
+                <tar:forma>cilindro</tar:forma>
+            </tar:areaGeografica>
+        </tns:tarea>
     </tns:tareas>
-
-
-
-
 </tns:mision>

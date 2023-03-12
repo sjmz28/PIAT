@@ -35,8 +35,8 @@
                 <xsd:element name="configuracionDron"> 
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="sensores" type="sen:sensoresType"/>
-                            <xsd:element name="actuadores" type="act:actuadoresType"/>
+                            <xsd:element name="sensores" type="sen:sensoresType" minOccurs="0"/>
+                            <xsd:element name="actuadores" type="act:actuadoresType" minOccurs="0"/>
                         </xsd:sequence>
                      </xsd:complexType>
                 </xsd:element>

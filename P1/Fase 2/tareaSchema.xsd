@@ -6,7 +6,7 @@
     xmlns:act="http://www.piat.upm.es/dronSchema"
     elementFormDefault="qualified">
 
-    <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
 
 <xsd:element name="tarea" type="tns:tareaType">
 
@@ -25,7 +25,7 @@
             <xsd:element name="dronesTarea" minOccurs="1" maxOccurs="unbounded">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="matricula" type="xsd:string"/>
+                        <xsd:element name="matricula" type="act:matriculaDronType"/>
                         <xsd:element name="actividadMision" type="xsd:string"/>
                         <!-- no puede haber dos dornes con la misma matricula o tarea-->
                     </xsd:sequence>
