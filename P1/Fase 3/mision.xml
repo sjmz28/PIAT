@@ -3,6 +3,8 @@
             xmlns:ide="http://www.piat.upm.es/identificacionSchema"
             xmlns:dr="http://www.piat.upm.es/dronSchema"
             xmlns:sen="http://www.piat.upm.es/sensoresSchema"
+            xmlns:act="http://www.piat.upm.es/actuadoresSchema"
+            xmlns:tar="http://www.piat.upm.es/tareaSchema"
             
             xmlns:tns="http://www.piat.upm.es/misionSchema"
             xsi:schemaLocation="http://www.piat.upm.es/misionSchema ../Fase%202/misionSchema.xsd">
@@ -13,21 +15,30 @@
         <tns:dron matriculaDron="sjmz5">
             <dr:claseDron>autónomo 6</dr:claseDron>
             <dr:homologaciones>
-                <dr:nacional>Madrid</dr:nacional>
+                <dr:nacional></dr:nacional>
+                <dr:internacional></dr:internacional>
             </dr:homologaciones>
             <dr:configuracionDron>
                 <dr:sensores>
                     <sen:numeroSensores>7</sen:numeroSensores>
-                    <sen:rango></sen:rango>
-                    <sen:sensor idSensor="SEN4-sm">
-                        <sen:elementoSensado>
-                    </sen:elementoSensado>
+                    <sen:sensor idSensor="ABC9-az">
+                        <sen:elementoSensado>Salinidad del agua</sen:elementoSensado>
+                        <sen:rango>1.34 2.45 2.32</sen:rango>
                     </sen:sensor>
                 </dr:sensores>
+                <dr:actuadores matriculaDron="ABCD8">
+                    <act:numeroActuadores>5</act:numeroActuadores>
+                    <act:actuador idActuador="AA$00">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Un tipo de actuacion</act:tipoActuacion>
+                            <act:fechasActuacion>2000-12-21 2023-03-13</act:fechasActuacion>
+                        </act:alcanceActuacion>
+                    </act:actuador>
+                </dr:actuadores>
             </dr:configuracionDron>
         </tns:dron>
     </tns:drones>
-
+    
 
 
 
