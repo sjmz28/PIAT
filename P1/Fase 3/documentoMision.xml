@@ -1,1 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<tns:documentoMision xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xmlns:prop="http://www.piat.upm.es/propietarioSchema"
+                     xmlns:imag="http://www.piat.upm.es/imagenSchema"
+                     
+                     xmlns:tns="http://www.piat.upm.es/documentoMisionSchema"
+                     xsi:schemaLocation="http://www.piat.upm.es/documentoMisionSchema ../Fase%202/documentoMisionSchema.xsd">
+                    
+                
+                     
+    <tns:metadatos>
+        <tns:identificacion version="aJ12"/>
+        <tns:propietario identificadorFiscal="12345678A">
+            <prop:nombrePR>Sara Jiménez</prop:nombrePR>
+            <prop:contacto>
+                <prop:email>s.jmunoz@correo.es</prop:email>
+                <prop:url>www.ejemplo.com</prop:url>
+            </prop:contacto>
+        </tns:propietario>
+    </tns:metadatos>  
+    <tns:datosMision>
+        <tns:descripcionDM>descripcion1</tns:descripcionDM>
+        <tns:formatoDatos>XML</tns:formatoDatos>
+        <tns:lenguaje>W3C</tns:lenguaje>
+        <tns:fecha>2023-03-10</tns:fecha>
+        <tns:datosSensores>Ejemplo de datos sensores</tns:datosSensores>
+        <tns:datosActuadores>Ejemplo de datos actuadores</tns:datosActuadores>
+        <tns:imagen idImagen="IMAG01">
+            <imag:dimensiones> 
+                <imag:ancho>2.75</imag:ancho>
+                <imag:alto>2.50</imag:alto>
+            </imag:dimensiones>
+            <imag:contenido formato="GIF"></imag:contenido>
+        </tns:imagen>
+    </tns:datosMision>               
+                        
+    </tns:documentoMision>

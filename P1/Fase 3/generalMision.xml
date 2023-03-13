@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:generalMision xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mis="http://www.piat.upm.es/misionSchema"
+             xmlns:doc="http://www.piat.upm.es/documentoMisionSchema"
+
+             xmlns:tns="http://www.piat.upm.es/generalMisionSchema"
+             xsi:schemaLocation="http://www.piat.upm.es/generalMisionSchema ../Fase%202/generalMisionSchema.xsd">
+            
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    </tns:generalMision>
