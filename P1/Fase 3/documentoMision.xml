@@ -17,7 +17,8 @@
                 <prop:url>www.ejemplo.com</prop:url>
             </prop:contacto>
         </tns:propietario>
-    </tns:metadatos>  
+    </tns:metadatos> 
+    <!-- DATOS MISION 1--> 
     <tns:datosMision>
         <tns:descripcionDM>descripcion1</tns:descripcionDM>
         <tns:formatoDatos>XML</tns:formatoDatos>
@@ -32,6 +33,36 @@
             </imag:dimensiones>
             <imag:contenido formato="GIF"></imag:contenido>
         </tns:imagen>
-    </tns:datosMision>               
+        <tns:imagen idImagen="IMAG02">
+            <imag:dimensiones> 
+                <imag:ancho>2.75</imag:ancho>
+                <imag:alto>2.50</imag:alto>
+            </imag:dimensiones>
+            <imag:contenido formato="GIF"></imag:contenido>
+        </tns:imagen>
+    </tns:datosMision>   
+    <!-- DATOS MISION 2-->
+    <tns:datosMision>
+        <tns:descripcionDM>descripcion1</tns:descripcionDM>
+        <tns:formatoDatos>XML</tns:formatoDatos>
+        <tns:lenguaje>W3C</tns:lenguaje>
+        <tns:fecha>2023-03-10</tns:fecha>
+        <tns:datosSensores>Ejemplo de datos sensores</tns:datosSensores>
+        <tns:datosActuadores>Ejemplo de datos actuadores</tns:datosActuadores>
+        <tns:imagen idImagen="IMAG03">
+            <imag:dimensiones> 
+                <imag:ancho>2.75</imag:ancho>
+                <imag:alto>2.50</imag:alto>
+            </imag:dimensiones>
+            <imag:contenido formato="GIF"></imag:contenido>
+        </tns:imagen>
+        <tns:imagen idImagen="IMAG04">
+            <imag:dimensiones> 
+                <imag:ancho>2.75</imag:ancho>
+                <imag:alto>2.50</imag:alto>
+            </imag:dimensiones>
+            <imag:contenido formato="GIF"></imag:contenido>
+        </tns:imagen>
+    </tns:datosMision>
                         
     </tns:documentoMision>

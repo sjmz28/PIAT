@@ -12,6 +12,7 @@
         <ide:descripcion> Esto es una prueba</ide:descripcion>
     </tns:identificacion>
     <tns:drones>
+        <!-- DRON NUMERO 1-->
         <tns:dron matriculaDron="sjmz5">
             <dr:claseDron>autónomo 6</dr:claseDron>
             <dr:homologaciones>
@@ -20,14 +21,24 @@
             </dr:homologaciones>
             <dr:configuracionDron>
                 <dr:sensores>
-                    <sen:numeroSensores>7</sen:numeroSensores>
+                    <sen:numeroSensores>2</sen:numeroSensores>
                     <sen:sensor idSensor="ABC9-az">
                         <sen:elementoSensado>Salinidad del agua</sen:elementoSensado>
                         <sen:rango>1.34 2.45 2.32</sen:rango>
                     </sen:sensor>
+                    <sen:sensor idSensor="ASC9-az">
+                        <sen:elementoSensado>Temperatura ambiente</sen:elementoSensado>
+                        <sen:rango>1.34 2.45 2.32</sen:rango>
+                    </sen:sensor>
                 </dr:sensores>
                 <dr:actuadores matriculaDron="ABCD8">
-                    <act:numeroActuadores>5</act:numeroActuadores>
+                    <act:numeroActuadores>2</act:numeroActuadores>
+                    <act:actuador idActuador="AA$00">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Un tipo de actuacion</act:tipoActuacion>
+                            <act:fechasActuacion>2000-12-21 2023-03-13</act:fechasActuacion>
+                        </act:alcanceActuacion>
+                    </act:actuador>
                     <act:actuador idActuador="AA$00">
                         <act:alcanceActuacion>
                             <act:tipoActuacion>Un tipo de actuacion</act:tipoActuacion>
@@ -37,8 +48,66 @@
                 </dr:actuadores>
             </dr:configuracionDron>
         </tns:dron>
+        <!-- DRON NUMERO 2-->
+        <tns:dron matriculaDron="sjmz5">
+            <dr:claseDron>autónomo 6</dr:claseDron>
+            <dr:homologaciones>
+                <dr:nacional></dr:nacional>
+                <dr:internacional></dr:internacional>
+            </dr:homologaciones>
+            <dr:configuracionDron>
+                <dr:sensores>
+                    <sen:numeroSensores>2</sen:numeroSensores>
+                    <sen:sensor idSensor="ABC9-az">
+                        <sen:elementoSensado>Salinidad del agua</sen:elementoSensado>
+                        <sen:rango>1.34 2.45 2.32</sen:rango>
+                    </sen:sensor>
+                    <sen:sensor idSensor="ASC9-az">
+                        <sen:elementoSensado>Temperatura ambiente</sen:elementoSensado>
+                        <sen:rango>1.34 2.45 2.32</sen:rango>
+                    </sen:sensor>
+                </dr:sensores>
+                <dr:actuadores matriculaDron="ABCD8">
+                    <act:numeroActuadores>2</act:numeroActuadores>
+                    <act:actuador idActuador="AA$00">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Un tipo de actuacion</act:tipoActuacion>
+                            <act:fechasActuacion>2000-12-21 2023-03-13</act:fechasActuacion>
+                        </act:alcanceActuacion>
+                    </act:actuador>
+                    <act:actuador idActuador="AA$00">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Un tipo de actuacion</act:tipoActuacion>
+                            <act:fechasActuacion>2000-12-21 2023-03-13</act:fechasActuacion>
+                        </act:alcanceActuacion>
+                    </act:actuador>
+                </dr:actuadores>
+            </dr:configuracionDron>
+        </tns:dron>
+
     </tns:drones>
     <tns:tareas>
+        <!-- TAREA NUMERO 1-->
+        <tns:tarea idTarea="TAR-12345">
+            <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
+            <tar:responableTarea>
+                <tar:email>s.jmunoz@alumnos.upm.es</tar:email>
+                <tar:url>www.upm.es</tar:url>
+            </tar:responableTarea>
+            <tar:dronesTarea>
+                <tar:matricula>ABCD5</tar:matricula>
+                <tar:actividadMision>Medir la salinidad</tar:actividadMision>
+            </tar:dronesTarea>
+            <tar:areaGeografica>
+                <tar:centro>
+                    <tar:longitud>26.6803</tar:longitud>
+                    <tar:latitud>26.6803</tar:latitud>
+                </tar:centro>
+                <tar:profundidad>3.45 23.22</tar:profundidad>
+                <tar:forma>cilindro</tar:forma>
+            </tar:areaGeografica>
+        </tns:tarea>
+        <!-- TAREA NUMERO 2-->
         <tns:tarea idTarea="TAR-12345">
             <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
             <tar:responableTarea>
