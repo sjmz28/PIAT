@@ -4,8 +4,9 @@
     xmlns:tns="http://www.piat.upm.es/generalMisionSchema"
     
     xmlns:mis="http://www.piat.upm.es/misionSchema"
-    xmlns:doc="http://www.piat.upm.es/identificacionSchema"
+    xmlns:ide="http://www.piat.upm.es/identificacionSchema"
     xmlns:prop="http://www.piat.upm.es/propietarioSchema"
+    xmlns:doc="http://www.piat.upm.es/documentoMisionSchema"
     
     elementFormDefault="qualified">
 
@@ -16,12 +17,9 @@
     <xsd:element name="generalMision">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="mision" type="mis:misionType"/>
-                <xsd:element name="documentosMision" minOccurs="1" maxOccurs="unbounded">
+                <xsd:element name="mision" type="ide:codigoMisionType"/>
+                <xsd:element name="documentosMision" type="doc:identificacionType" minOccurs="1" maxOccurs="unbounded">
                     <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="identificacion" type="doc:identificacionType"/>
-                        </xsd:sequence>
                         <xsd:attribute name="numeroOrden" type="xsd:integer" use="required"/>
                         <xsd:attribute name="propietario" type="prop:identificadorFiscalType" use="required"/>
                     </xsd:complexType> 

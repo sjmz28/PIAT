@@ -7,8 +7,7 @@ elementFormDefault="qualified">
     <xsd:element name="imagen" type="tns:imagenType"/>
 
     <xsd:complexType name="imagenType">
-        <xsd:sequence>
-            <xsd:element name="idImagen" type="tns:idImagenType"/>             
+        <xsd:sequence>            
             <xsd:element name="dimensiones">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -18,10 +17,22 @@ elementFormDefault="qualified">
                 </xsd:complexType>
             </xsd:element>
             <xsd:element name="descripcion" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="contenido" type="xsd:base64Binary"/>
+            <xsd:element name="contenido" minOccurs="1" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:attribute name="formato" type="tns:formatoType"></xsd:attribute>
+                </xsd:complexType>
+            </xsd:element>
         </xsd:sequence>
-    <xsd:attribute name="idDM" type="xsd:integer" use="required"/> <!-- tomará valor unico entre los elementos del documento-->
+    <xsd:attribute name="idImagen" type="tns:idImagenType" use="required"/> <!-- tomará valor unico entre los elementos del documento-->
     </xsd:complexType>
+
+    <xsd:simpleType name="formatoType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="GIF"/>
+            <xsd:enumeration value="JPEG"/>
+            <xsd:enumeration value="PNG"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:simpleType name="idImagenType">
         <xsd:restriction base="xsd:string">

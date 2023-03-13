@@ -8,7 +8,13 @@
 
         <xsd:complexType name="identificacionType">
             <xsd:sequence>
-                <xsd:element name="descripcion"/> 
+                <xsd:element name="descripcion">
+                    <xsd:complexType mixed="true">
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                            <!-- <xsd:element name="keyword" type="tns:keyword_type"></xsd:element> -->
+                        </xsd:choice>
+                    </xsd:complexType>
+                </xsd:element>
             </xsd:sequence>
             <xsd:attribute name="codigoMision" type="tns:codigoMisionType" use="required"/>
         </xsd:complexType>
