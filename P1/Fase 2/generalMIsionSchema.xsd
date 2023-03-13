@@ -18,13 +18,22 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="mision" type="ide:codigoMisionType"/>
-                <xsd:element name="documentosMision" type="doc:identificacionType" minOccurs="1" maxOccurs="unbounded">
-                    <xsd:complexType>
-                        <xsd:attribute name="numeroOrden" type="xsd:integer" use="required"/>
-                        <xsd:attribute name="propietario" type="prop:identificadorFiscalType" use="required"/>
-                    </xsd:complexType> 
-                </xsd:element>
+                <xsd:element name="documentosMision" type="tns:documentoMisionType"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:complexType name="documentoMisionType">
+        <xsd:complexContent>
+            <xsd:extension base="ide:identificacionType">
+                <xsd:attributeGroup ref="tns:grupoAtributos"></xsd:attributeGroup>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:attributeGroup name="grupoAtributos">
+        <xsd:attribute name="numeroOrden" type="xsd:integer" use="required"/>
+        <xsd:attribute name="propietario" type="prop:identificadorFiscalType" use="required"/>
+    </xsd:attributeGroup>
+
 </xsd:schema>
