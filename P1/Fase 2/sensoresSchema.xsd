@@ -10,7 +10,7 @@
         <xsd:complexType name="sensoresType">
             <xsd:sequence>
                 <xsd:element name="numeroSensores" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="sensor">
+                <xsd:element name="sensor" minOccurs="1" maxOccurs="unbounded">
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="elementoSensado" type="xsd:string" minOccurs="1"/>

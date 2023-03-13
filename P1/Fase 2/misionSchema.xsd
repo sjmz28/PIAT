@@ -20,14 +20,14 @@ elementFormDefault="qualified">
             <xsd:element name="drones" minOccurs="1">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="dron" type="dr:dronType"/>
+                        <xsd:element name="dron" type="dr:dronType" minOccurs="1" maxOccurs="unbounded"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
             <xsd:element name="tareas" minOccurs="1">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="tarea" type="tar:tareaType"/>
+                        <xsd:element name="tarea" type="tar:tareaType" minOccurs="1" maxOccurs="unbounded"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
