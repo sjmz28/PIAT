@@ -36,7 +36,10 @@
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="sensores" type="sen:sensoresType" minOccurs="0">
-                                
+                               <xsd:key name="sensoresKey">
+                                    <xsd:selector xpath="./sen:sensor"></xsd:selector>
+                                    <xsd:field xpath="@idSensor"></xsd:field>
+                               </xsd:key> 
                             </xsd:element>
                             <xsd:element name="actuadores" type="act:actuadoresType" minOccurs="0"/>
                         </xsd:sequence>
