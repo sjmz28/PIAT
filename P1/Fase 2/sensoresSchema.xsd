@@ -18,6 +18,10 @@
                         </xsd:sequence>
                         <xsd:attribute name="idSensor" type="tns:idSensorType" use="required"></xsd:attribute>
                     </xsd:complexType>
+                    <xsd:key name="idSensor">
+                        <xsd:selector xpath="drones/dron/sensores/sensor"/>
+                        <xsd:field xpath="@idSensor"/>
+                        </xsd:key>
                 </xsd:element>
             </xsd:sequence>
         </xsd:complexType>  
@@ -28,6 +32,7 @@
             <xsd:pattern value="[A-Z]{3}[0-9]-[a-z]{2}"/> <!-- mirar si es con el guion o sin el guion-->
         </xsd:restriction>
     </xsd:simpleType>
+    
 
     <xsd:simpleType name="tipoRango"> 
         <xsd:list itemType="xsd:double"/>         
