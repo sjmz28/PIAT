@@ -19,9 +19,9 @@
                         <xsd:attribute name="idSensor" type="tns:idSensorType" use="required"></xsd:attribute>
                     </xsd:complexType>
                     <xsd:key name="idSensor">
-                        <xsd:selector xpath="drones/dron/sensores/sensor"/>
-                        <xsd:field xpath="@idSensor"/>
-                        </xsd:key>
+                                    <xsd:selector xpath="./sensor"/>
+                                    <xsd:field xpath="@idSensor"/>
+                                </xsd:key>
                 </xsd:element>
             </xsd:sequence>
         </xsd:complexType>  
