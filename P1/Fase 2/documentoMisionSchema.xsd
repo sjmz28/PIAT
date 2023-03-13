@@ -10,7 +10,23 @@ elementFormDefault="qualified">
 <xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"/>
 <xsd:import namespace="http://www.piat.upm.es/imagenSchema" schemaLocation="./imagenSchema.xsd"/>
     
-    <xsd:element name="documentoMision" type="tns:documentoMisionType"/>
+    <xsd:element name="documentoMision" type="tns:documentoMisionType">
+        <xsd:key name="idDMKey">
+            <xsd:selector xpath="./tns:datosMision"/>
+            <xsd:field xpath="@idDM"/>
+        </xsd:key>
+        
+        <xsd:key name="idImagenKey">
+            <xsd:selector xpath="./tns:datosMision/tns:imagenes/tns:imagen"/>
+            <xsd:field xpath="@idImagen"/>
+        </xsd:key>
+
+        <xsd:key name="identificadorFiscalKey">
+            <xsd:selector xpath="./tns:metadatos/tns:propietario"/>
+            <xsd:field xpath="@identificadorFiscal"/>
+        </xsd:key>
+
+    </xsd:element>
     
     <xsd:complexType name="documentoMisionType">
         <xsd:sequence>
@@ -18,7 +34,7 @@ elementFormDefault="qualified">
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="identificacion" type="tns:identificacionType"/>
-                        <xsd:element name="propietario" type="prop:propietarioType"/>
+                        <xsd:element name="propietario" type="prop:propietarioType" minOccurs="1" maxOccurs="unbounded"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -45,9 +61,16 @@ elementFormDefault="qualified">
             <xsd:element name="fecha" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datosSensores" type="xsd:string" minOccurs="1"/>
             <xsd:element name="datosActuadores" type="xsd:string"/>
-            <xsd:element name="imagen" type="imag:imagenType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="imagenes" type="tns:imagenesType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
+        <xsd:attribute name="idDM" type="xsd:integer"></xsd:attribute>
     </xsd:complexType>
+
+    <xsd:complexType name="imagenesType">
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element name="imagen" type="imag:imagenType"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
 
     <xsd:simpleType name="languageType">
         <xsd:restriction base="xsd:string">

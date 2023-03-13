@@ -4,6 +4,10 @@ targetNamespace="http://www.piat.upm.es/imagenSchema"
 xmlns:tns="http://www.piat.upm.es/imagenSchema"
 elementFormDefault="qualified">
 
+    <xsd:notation name="gif" public="image/gif"/>
+    <xsd:notation name="jpeg" public="image/jpeg"/>
+    <xsd:notation name="png" public="image/png"/>
+
     <xsd:element name="imagen" type="tns:imagenType"/>
 
     <xsd:complexType name="imagenType">
@@ -19,18 +23,26 @@ elementFormDefault="qualified">
             <xsd:element name="descripcion" type="xsd:string" minOccurs="0"/>
             <xsd:element name="contenido" minOccurs="1" maxOccurs="1">
                 <xsd:complexType>
-                    <xsd:attribute name="formato" type="tns:formatoType"></xsd:attribute>
+                    <xsd:attribute name="formato" type="tns:formatoType"/>
                 </xsd:complexType>
             </xsd:element>
         </xsd:sequence>
     <xsd:attribute name="idImagen" type="tns:idImagenType" use="required"/> <!-- tomará valor unico entre los elementos del documento-->
     </xsd:complexType>
 
+    <xsd:complexType name="contenidoType">
+        <xsd:simpleContent>
+          <xsd:extension base="xsd:base64Binary">
+            <xsd:attribute name="formato" type="tns:formatoType"/>
+          </xsd:extension>
+        </xsd:simpleContent>
+      </xsd:complexType>
+
     <xsd:simpleType name="formatoType">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="GIF"/>
-            <xsd:enumeration value="JPEG"/>
-            <xsd:enumeration value="PNG"/>
+            <xsd:enumeration value="gif"/>
+            <xsd:enumeration value="jpeg"/>
+            <xsd:enumeration value="png"/>
         </xsd:restriction>
     </xsd:simpleType>
 

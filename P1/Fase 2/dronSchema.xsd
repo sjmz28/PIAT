@@ -14,15 +14,8 @@
 
         <xsd:complexType name="dronType">
             <xsd:sequence>
-                <xsd:element name="claseDron" type="tns:putaListaclaseDron" minOccurs="1">
-                    <!-- <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="tipoDron" type="tns:tipoDronType"/>
-                            <xsd:element name="numMotores" type="xsd:integer"/> 
-                        </xsd:sequence>
-                    </xsd:complexType> -->
-
-                </xsd:element>
+                
+                <xsd:element name="claseDron" type="tns:ListaclaseDronType" minOccurs="1"/>
                 <xsd:element name="homologaciones" minOccurs="1">
                     <xsd:complexType>
                         <xsd:choice minOccurs="1" maxOccurs="unbounded"> 
@@ -31,20 +24,25 @@
                         </xsd:choice>
                     </xsd:complexType>
                 </xsd:element>
-
                 <xsd:element name="configuracionDron"> 
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="sensores" type="sen:sensoresType" minOccurs="0">
                                <xsd:key name="sensoresKey">
-                                    <xsd:selector xpath="./sen:sensor"></xsd:selector>
-                                    <xsd:field xpath="@idSensor"></xsd:field>
+                                    <xsd:selector xpath="./sen:sensor"/>
+                                    <xsd:field xpath="@idSensor"/>
                                </xsd:key> 
                             </xsd:element>
-                            <xsd:element name="actuadores" type="act:actuadoresType" minOccurs="0"/>
+                            <xsd:element name="actuadores" type="act:actuadoresType" minOccurs="0">
+                                <xsd:key name="actuadoresKey">
+                                    <xsd:selector xpath="./act:actuador"/>
+                                    <xsd:field xpath="@idActuador"/>
+                               </xsd:key>
+                            </xsd:element>
                         </xsd:sequence>
                      </xsd:complexType>
                 </xsd:element>
+              
             </xsd:sequence>
             <xsd:attribute name="matriculaDron" type="tns:matriculaDronType" use="required"/>
         </xsd:complexType>
@@ -62,7 +60,7 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:simpleType name="putaListaclaseDron">
+    <xsd:simpleType name="ListaclaseDronType">
         <xsd:list itemType="tns:claseDronType"/>
     </xsd:simpleType>
 

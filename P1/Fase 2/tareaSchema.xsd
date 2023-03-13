@@ -17,7 +17,9 @@
             <xsd:element name="responableTarea" minOccurs="0" maxOccurs="unbounded">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="email" type="xsd:string" maxOccurs="unbounded"/><!-- no puede haber dos iguales-->
+                        <xsd:element name="email" minOccurs="1" maxOccurs="1">
+                            
+                        </xsd:element>
                         <xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded"></xsd:element>
                     </xsd:sequence>
                 </xsd:complexType>
@@ -27,7 +29,6 @@
                     <xsd:sequence>
                         <xsd:element name="matricula" type="act:matriculaDronType"/>
                         <xsd:element name="actividadMision" type="xsd:string"/>
-                        <!-- no puede haber dos dornes con la misma matricula o tarea-->
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -72,7 +73,7 @@
 
     <xsd:simpleType name="idTareaType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="TAR-[0-9]{5}"></xsd:pattern> <!-- tiene qur ser un valor unico-->
+            <xsd:pattern value="TAR-[0-9]{5}"/> 
         </xsd:restriction>
     </xsd:simpleType>
 

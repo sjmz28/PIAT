@@ -26,7 +26,6 @@
                     </xsd:complexType>
                 </xsd:element>
             </xsd:sequence>
-            <xsd:attribute name="matriculaDron" type="tns:matriculaDronType" use="required"></xsd:attribute>
         </xsd:complexType>
     
 
@@ -45,11 +44,6 @@
          </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:simpleType name="matriculaDronType">
-        <xsd:restriction base="xsd:string">
-            <xsd:length value="5"/>  
-        </xsd:restriction>
-    </xsd:simpleType>
 
   <!-- FIN DEL ESQUEMA -->
 
