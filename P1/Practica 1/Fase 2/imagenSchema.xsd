@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SARA JIMÉNEZ MUÑOZ-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.piat.upm.es/imagenSchema"
+xmlns:tns="http://www.piat.upm.es/imagenSchema"
+elementFormDefault="qualified">
+
+    <xsd:notation name="gif" public="image/gif"/>
+    <xsd:notation name="jpeg" public="image/jpeg"/>
+    <xsd:notation name="png" public="image/png"/>
+
+    <xsd:element name="imagen" type="tns:imagenType"/>
+
+    <xsd:complexType name="imagenType">
+        <xsd:sequence>            
+            <xsd:element name="dimensiones">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ancho" type="xsd:double" minOccurs="1"/>
+                        <xsd:element name="alto" type="xsd:double" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="descripcion" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="contenido" minOccurs="1" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:attribute name="formato" type="tns:formatoType"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    <xsd:attribute name="idImagen" type="tns:idImagenType" use="required"/> <!-- tomará valor unico entre los elementos del documento-->
+    </xsd:complexType>
+
+    <xsd:complexType name="contenidoType">
+        <xsd:simpleContent>
+          <xsd:extension base="xsd:base64Binary">
+            <xsd:attribute name="formato" type="tns:formatoType"/>
+          </xsd:extension>
+        </xsd:simpleContent>
+      </xsd:complexType>
+
+    <xsd:simpleType name="formatoType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="gif"/>
+            <xsd:enumeration value="jpeg"/>
+            <xsd:enumeration value="png"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="idImagenType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="IMAG[0-9]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- FIN DEL ESQUEMA-->
+</xsd:schema>

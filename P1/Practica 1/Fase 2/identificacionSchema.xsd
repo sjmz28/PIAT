@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SARA JIMÉNEZ MUÑOZ-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.piat.upm.es/identificacionSchema" 
+    xmlns:tns="http://www.piat.upm.es/identificacionSchema"
+    elementFormDefault="qualified">
+
+    <xsd:element name="identificacion" type="tns:identificacionType"/>
+
+        <xsd:complexType name="identificacionType">
+            <xsd:sequence>
+                <xsd:element name="descripcion">
+                    <xsd:complexType mixed="true">
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                            <xsd:element name="keyword" type="tns:keywordType"></xsd:element>
+                        </xsd:choice>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="codigoMision" type="tns:codigoMisionType" use="required"/>
+        </xsd:complexType>
+    
+
+        
+    <xsd:simpleType name="keywordType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="2"/>
+            <xsd:maxLength value="30"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+
+    <xsd:simpleType name="descripcionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="2"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+
+    </xsd:simpleType>
+        
+    <xsd:simpleType name="codigoMisionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z][0-9]{3}[a-z]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>

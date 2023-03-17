@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SARA JIMÉNEZ MUÑOZ-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.piat.upm.es/misionSchema"
+xmlns:tns="http://www.piat.upm.es/misionSchema"
+
+xmlns:ident="http://www.piat.upm.es/identificacionSchema"
+xmlns:dr="http://www.piat.upm.es/dronSchema"
+xmlns:tar="http://www.piat.upm.es/tareaSchema"
+elementFormDefault="qualified">
+
+<xsd:import namespace="http://www.piat.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
+<xsd:import namespace="http://www.piat.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
+<xsd:import namespace="http://www.piat.upm.es/tareaSchema" schemaLocation="./tareaSchema.xsd"/>
+
+    <xsd:element name="mision" type="tns:misionType"/>
+
+    <xsd:complexType name="misionType">
+        <xsd:sequence>
+            <xsd:element name="identificacion" type="ident:identificacionType" minOccurs="1"/>
+            <xsd:element name="drones" minOccurs="1">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="dron" type="dr:dronType" minOccurs="1" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+                <xsd:key name="matriculaDronKey">
+                                <xsd:selector xpath="./tns:dron"/>
+                                <xsd:field xpath="@matriculaDron"/>
+                </xsd:key>
+            </xsd:element>
+            <xsd:element name="tareas" minOccurs="1">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="tarea" type="tar:tareaType" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+                <xsd:key name="tareaKey">
+                    <xsd:selector xpath="./tns:tarea"/>
+                    <xsd:field xpath="@idTarea"/>
+                </xsd:key>
+
+                <xsd:key name="correoKey">
+                    <xsd:selector xpath="./tns:tarea/tar:tarea"/>
+                    <xsd:field xpath="correo"></xsd:field>
+                </xsd:key>
+                
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

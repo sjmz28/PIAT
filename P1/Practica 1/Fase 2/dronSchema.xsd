@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SARA JIMÉNEZ MUÑOZ-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.piat.upm.es/dronSchema"
+    xmlns:tns="http://www.piat.upm.es/dronSchema"
+
+    xmlns:act="http://www.piat.upm.es/actuadoresSchema"
+    xmlns:sen="http://www.piat.upm.es/sensoresSchema"
+    elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/sensoresSchema" schemaLocation="./sensoresSchema.xsd"/>
+
+    <xsd:element name="dron" type="tns:dronType"/>
+
+        <xsd:complexType name="dronType">
+            <xsd:sequence>
+                
+                <xsd:element name="claseDron" type="tns:ListaclaseDronType" minOccurs="1"/>
+                <xsd:element name="homologaciones" minOccurs="1">
+                    <xsd:complexType>
+                        <xsd:choice minOccurs="1" maxOccurs="unbounded"> 
+                            <xsd:element name="nacional" type="xsd:string"/>
+                            <xsd:element name="internacional" type="xsd:string"/> 
+                        </xsd:choice>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="configuracionDron"> 
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="sensores" type="sen:sensoresType" minOccurs="0">
+                               <xsd:key name="sensoresKey">
+                                    <xsd:selector xpath="./sen:sensor"/>
+                                    <xsd:field xpath="@idSensor"/>
+                               </xsd:key> 
+                            </xsd:element>
+                            <xsd:element name="actuadores" type="act:actuadoresType" minOccurs="0">
+                                <xsd:key name="actuadoresKey">
+                                    <xsd:selector xpath="./act:actuador"/>
+                                    <xsd:field xpath="@idActuador"/>
+                               </xsd:key>
+                            </xsd:element>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                </xsd:element>
+              
+            </xsd:sequence>
+            <xsd:attribute name="matriculaDron" type="tns:matriculaDronType" use="required"/>
+        </xsd:complexType>
+        
+
+    <xsd:simpleType name="claseDronType">
+        <xsd:union memberTypes="tns:tipoDronType xsd:integer"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="tipoDronType">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="autónomo"/>
+            <xsd:enumeration value="contolado"/>
+            <xsd:enumeration value="monotorizado"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="ListaclaseDronType">
+        <xsd:list itemType="tns:claseDronType"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="matriculaDronType">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="5"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+  <!-- fin de esquema -->
+</xsd:schema>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.piat.upm.es/sistemaControl"
+            xmlns:tns="http://www.piat.upm.es/sistemaControl"
+            xmlns:des="http://www.piat.upm.es/descripcionControl"
+
+            elementFormDefault="qualified">
+
+<xsd:import namespace="http://www.piat.upm.es/descripcionControl" schemaLocation="./descripcionControl.xsd"/>
+
+    <xsd:element name="sistemaControl" type="tns:sistemaControlType">
+        <xsd:key name="idSistCaptadorKey">
+            <xsd:selector xpath="./tns:espSistEsp/des:ctrlSistCaptador"/>
+            <xsd:field xpath="@idSistCaptador"/>
+        </xsd:key>
+    </xsd:element>
+
+    <xsd:complexType name="sistemaControlType">
+        <xsd:sequence>
+            <xsd:element name="espControl" type="des:tipoEspTControl"/>
+            <xsd:element name="espSistEsp" type="des:tipoCtrlSistEsp" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="espSist" type="tns:espSistType"></xsd:element>
+        </xsd:sequence>
+        
+    </xsd:complexType>
+
+    <xsd:complexType name="espSistType">
+        <xsd:complexContent>
+            <xsd:extension base="des:tipoCtrlList">
+                <xsd:attribute name="id" type="xsd:token" use="required"/>
+                <xsd:attribute name="idioma" type="tns:idiomaType" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="idiomaType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Za-z]{2}"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>

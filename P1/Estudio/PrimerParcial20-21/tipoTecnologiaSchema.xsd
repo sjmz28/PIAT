@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.piat.upm.es/tipoTecnologiaSchema"
+        xmlns:tns="http://www.piat.upm.es/tipoTecnologiaSchema"
+        elementFormDefault="qualified">
+
+    <xsd:element name="tipoTecnologia" type="tns:tipoTecnologiaType"/>
+        
+
+    <xsd:complexType name="tipoTecnologiaType">
+        <xsd:sequence>
+            <xsd:element name="dispositivo" type="tns:disponitivoType" minOccurs="1"/>
+            <xsd:element name="simulador" type="tns:simuladorType" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+<!-- ***************************************-->
+    <xsd:complexType name="disponitivoType">
+       <xsd:sequence>
+            <xsd:element name="nombre" type="xsd:string"/>
+                <xsd:element name="fabricante">
+                    <xsd:complexType>
+                        <xsd:attribute name="idFabricante" type="xsd:positiveInteger" use="required"/>
+                    </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="url" type="xsd:anyURI"/>
+        </xsd:sequence>
+        <xsd:attribute name="idTecnologia" type="xsd:token"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="simuladorType">
+        <xsd:all>
+            <xsd:element name="nombre" type="tns:nombreType" minOccurs="1"/>
+            <xsd:element name="fabricante" type="tns:fabricanteType" minOccurs="1"/>
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:simpleType name="nombreType">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="150"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- <xsd:simpleType name="fabricanteType">   
+        <xsd:union memberTypes="xsd:string tns:ValoresEnteros"></xsd:union>
+    </xsd:simpleType> -->
+
+    <xsd:simpleType name="tipoListaEnteros">
+<xsd:list itemType="xsd:integer"/>
+</xsd:simpleType>
+<xsd:simpleType name="tipoCincoEnteros">
+<xsd:restriction base="tns:tipoListaEnteros">
+<xsd:length value="5"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="fabricanteType">
+<xsd:union memberTypes= "tns:tipoCincoEnteros xsd:string "/>
+</xsd:simpleType>
+
+</xsd:schema>

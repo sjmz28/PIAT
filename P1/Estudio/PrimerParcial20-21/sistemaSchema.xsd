@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.piat.upm.es/sistemaSchema"
+    xmlns:tns="http://www.piat.upm.es/sistemaSchema"
+
+    xmlns:fas="http://www.piat.upm.es/tipoFaseSchema"
+    xmlns:tec="http://www.piat.upm.es/tipoTecnologiaSchema"
+
+    elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.piat.upm.es/tipoFaseSchema" schemaLocation="./tipoFaseSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/tipoTecnologiaSchema" schemaLocation="./tipoTecnologiaSchema.xsd"/>
+
+    <xsd:element name="sistema" type="tns:sistemaType">
+        <xsd:key name="idFaseKey">
+            <xsd:selector xpath="./tns:fase/fas:arquitecturas/fas:arquitectura"/>
+            <xsd:field xpath="@idFase"/>
+        </xsd:key>
+        <xsd:key name="idFaseReal">
+            <xsd:selector xpath="./tns:fase"/>
+            <xsd:field xpath="@idFase"/>
+        </xsd:key>
+        <xsd:keyref name="claveputooo" refer="tns:idFaseReal">
+            <xsd:selector xpath="./tns:subsistema"/>
+            <xsd:field xpath="tns:faseSubsistema"></xsd:field>
+        </xsd:keyref>
+    
+
+
+    </xsd:element>
+        
+  
+    <xsd:complexType name="sistemaType">
+        <xsd:sequence>
+            <xsd:element name="fase" type="fas:tipoFaseType" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="tecnologia" type="tec:tipoTecnologiaType"/>
+            <xsd:element name="subsistema" type="tns:subsistemaType" >
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="subsistemaType">
+        <xsd:sequence>
+            <xsd:element name="faseSubsistema" type="fas:idFaseType" minOccurs="1"/>
+            <xsd:element name="tecnologiaSubsistema" type="xsd:token"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    
+</xsd:schema>

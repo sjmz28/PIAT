@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tns:sistemaControl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xmlns:des="http://www.piat.upm.es/descripcionControl"
+
+                    xmlns:tns="http://www.piat.upm.es/sistemaControl"
+                    xsi:schemaLocation="http://www.piat.upm.es/sistemaControl ./sistemaControl.xsd">
+    
+    <tns:espControl>
+        <des:descripcion>
+            El control de un <des:sistema> sistema específico
+            </des:sistema> se realizará teniendo en cuenta su <des:clave>
+            eficiencia </des:clave>, <des:clave> tiempo entre lecturas
+            </des:clave> y <des:clave> cantidad de datos leídos </des:clave> desde
+            la última sesión de control
+        </des:descripcion>
+        <des:fabricantes>
+            <des:fabricante>
+                <des:identificacion>
+                    <des:nombre>UnNombreHumano</des:nombre>
+                    <des:nombre>OtroNombreHumano</des:nombre>
+                    <des:url>www.paginaweb.com</des:url>
+                </des:identificacion>
+                <des:fechaInstalacion>2023-02-02</des:fechaInstalacion>
+            </des:fabricante>
+            <des:fabricante>
+                <des:identificacion>
+                    <des:nombre>UnNombreHumano</des:nombre>
+                    <des:nombre>OtroNombreHumano</des:nombre>
+                    <des:url>www.paginaweb.com</des:url>
+                </des:identificacion>
+                <des:fechaInstalacion>2023-02-02</des:fechaInstalacion>
+            </des:fabricante>
+        </des:fabricantes>
+    </tns:espControl>
+
+    <tns:espSistEsp>
+        <des:ctrlSistCaptador idSistCaptador="23"/>
+        <des:ctrlSistCaptador idSistCaptador="33" />
+      
+    </tns:espSistEsp>
+
+    <tns:espSist id="unaPalabra">
+        <des:claseSubsist>transmision</des:claseSubsist>
+        <des:codigoControlSubsist>ABCD123-ab</des:codigoControlSubsist>
+    </tns:espSist> 
+   
+
+    
+
+</tns:sistemaControl>
