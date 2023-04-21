@@ -11,8 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
 /**
- * @author Arturo Salvador Mayor 51558282X
- * @author Sara Jiménez Muñoz 51512521L
+ * @author Ponga aquí su nombre, apellidos y DNI
  *
  */
 public class EstadisticasLog {
@@ -30,16 +29,24 @@ public class EstadisticasLog {
 
 	// Patrón de una traza cualquiera correcta de la que podemos extraer, en el
 	// grupo 1, el nombre del servidor
-	private final static String patronTraza = "^(" + FECHA + ")\\s(" + HORA + ")\\s((" + TIPO_SERVIDOR + ")"
-			+ NUMERO_SERVIDOR + ")\\s\\[\\w+\\]:.*";
+	// TODO: Modificar este patrón para que tenga más grupos y así se pueda extraer
+	// más información y no solo el nombre del servidor
+	private final static String patronTraza = "^" + FECHA + "\\s+" + HORA + "\\s+(" + TIPO_SERVIDOR + NUMERO_SERVIDOR
+			+ ")+\\s+\\[\\w+\\]:.*";
 
 	/* Patrones que se usan en las estadísticas agregadas */
-	private final static String msgIn = ".*smtp-in.*message from.*";
-	private final static String msgOut = ".*smtp-out.*message from.*";
-	private final static String msgINFECTED = ".*security.*INFECTED.*";
-	private final static String msgSPAM = ".*security.*SPAM.*";
-	private final static String code432 = ".*4\\.3\\.2.*";
-	private final static String code511 = ".*5\\.1\\.1.*";
+	private final static String msgBLOQUEADOS = ".*SEC-BLOCKED.*"; // Los mensajes bloqueados son los que tienen la
+																	// palabra SEC-BLOCKED en la traza
+	private final static String msgPASADOS = ".*SEC-PASSED.*"; // Los mensajes que pasan al siguiente servidor son los
+																// que tienen la palabra SEC-PASSED en la traza
+	// TODO: Cambiar estos patrones por los que se piden en la práctica
+	private final static String msgIn = ".*smtp-in.*message from.*";// ".*smtp-in.*.*accepted.*";
+	private final static String msgOut = ".*smtp-out.*message from.*";// ".*security.*INFECTED.*";//".*smtp-out.*.*delivered,
+																		// dsn: 2.0.0.*";
+	private final static String msgInfected = ".*security.*.*INFECTED.*";
+	private final static String msgSPAM = ".*security.*.*SPAM.*";
+	private final static String msgRegEx432 = ".*4\\.3\\.2.*";// ".*overload.*"; //".*(4\\.3\\.2).*";
+	private final static String msgRegEx511 = ".*5\\.1\\.1.*";
 
 	public static void main(String[] args) throws InterruptedException {
 		Thread.currentThread().setName("Principal");
@@ -49,17 +56,17 @@ public class EstadisticasLog {
 		// En este array bidimensional se almacenan los nombres de los estadísticos a
 		// obtener y el patrón para que luego sea mas fácil recorrerlo
 		// y meter sus valores en el mapa hmPatronesEstadisticasAgregadas
-
-		// ------------modificado----------------
 		final String[][] patronesEstadisticasAgregadas = {
+				{ "msgBLOQUEADOS", msgBLOQUEADOS },
+				{ "msgPASADOS", msgPASADOS },
 				{ "msgIn", msgIn },
 				{ "msgOut", msgOut },
-				{ "msgINFECTED", msgINFECTED },
+				{ "msgINFECTED", msgInfected },
 				{ "msgSPAM", msgSPAM },
-				{ "code 4.3.2", code432 },
-				{ "code 5.1.1", code511 }
+				{ "code 4.3.2", msgRegEx432 },
+				{ "code 5.1.1", msgRegEx511 }
 		};
-		// ------------modificado----------------
+		// TODO: Cambiar estos patrones por los que se piden en la práctica
 
 		// Mapa donde se guarda como clave el nombre de la estadística agregada, y como
 		// valor, el patrón para detectar el String de la traza que contiene ese
@@ -184,29 +191,10 @@ public class EstadisticasLog {
 		// se copia a un TreeMap y se muestra el contenido de este, pues un TreeMap
 		// almacena la información ordenada por la clave
 		Map<String, AtomicInteger> mapaOrdenado = new TreeMap<String, AtomicInteger>(hmEstadisticasAgregadas);
-		// ------------modificado----------------
-		String tipoServidorAnterior = "";
-		// ------------modificado----------------
 		for (Map.Entry<String, AtomicInteger> entrada : mapaOrdenado.entrySet()) {
 			// TODO: La siguiente instrucción es correcta, pero se puede cambiar para que
 			// salga mejor formateada
-
-			// ------------modificado----------------
-			String datos[] = entrada.getKey().split(" ", 3);
-			String tipoServidor = datos[0];
-
-			String fecha = datos[1];
-			String estadistic = datos[2];
-
-			if (!tipoServidor.equals(tipoServidorAnterior)) {
-				System.out.println("\t" + tipoServidor + ":");
-				System.out.println("\t\t" + fecha + " " + estadistic + " = " + entrada.getValue().get());
-				tipoServidorAnterior = tipoServidor;
-			} else {
-				System.out.println("\t\t" + fecha + " " + estadistic + " = " + entrada.getValue().get());
-				tipoServidorAnterior = tipoServidor;
-			}
-			// ------------modificado----------------
+			System.out.println(("\t" + entrada.getKey() + " = " + entrada.getValue().get() + "\n").getBytes());
 		}
 
 		/* Estadísticas de usuarios */

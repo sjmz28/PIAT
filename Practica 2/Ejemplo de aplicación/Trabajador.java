@@ -10,8 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Arturo Salvador Mayor 51558282X
- * @author Sara Jiménez Muñoz 51512521L
+ * @author Ponga aquí su nombre, apellidos y DNI
  *
  */
 public class Trabajador implements Runnable {
@@ -24,6 +23,8 @@ public class Trabajador implements Runnable {
 	private final ConcurrentHashMap<String, Pattern> hmPatronesEstadisticasAgregadas;
 	private final ConcurrentHashMap<String, AtomicInteger> hmUsuarios;
 	private final AtomicInteger numTrabajadoresTerminados;
+
+	private final String msgCorreo = ".*msa.*from: <(([\\w-]+\\.[\\w-]*)@[AZa-z0-9]+(\\.[AZa-z0-9]+)(\\.[A-Za-z]{2,}))";
 
 	public Trabajador(File fichero, Pattern pTraza, AtomicInteger lineasCorrectas, AtomicInteger lineasIncorrectas,
 			ConcurrentHashMap<String, String> hmServidores,
@@ -55,8 +56,8 @@ public class Trabajador implements Runnable {
 					procesarLinea(linea);
 				}
 			} catch (Exception e) {
-				System.out.println("fichero: " + fichero.getName() + "\n ");
 				System.err.println("ERROR (leyendo el fichero): " + e.getMessage());
+				e.printStackTrace();
 			} finally {
 				try {
 					brInput.close();
@@ -109,9 +110,10 @@ public class Trabajador implements Runnable {
 	 */
 	private void estadisticasServidor(Matcher matcherLinea) {
 		// Extraer de matcherLinea el nombre del servidor y el tipo
-		// ------------modificado----------------
+		// TODO
+		// hmServidores.put (nombreServidor, tipoServidor); // Meter los valores
+		// obtenidos en el mapa
 		hmServidores.put(matcherLinea.group(3), matcherLinea.group(4));
-		// ------------modificado----------------
 	}
 
 	/**
@@ -129,10 +131,8 @@ public class Trabajador implements Runnable {
 		// Extraer de matcherLinea los valores que se necesitan a partir de los grupos
 		// disponibles
 		final String traza = matcherLinea.group(0); // Traza completa
-		final String tipoServidor = matcherLinea.group(4); // Tipo de servidor MODIFICADO
-
-		final String fecha = matcherLinea.group(1); // Fecha
-
+		final String tipoServidor = matcherLinea.group(4); // Tipo de servidor
+		final String fecha = matcherLinea.group(1);
 		Matcher comparador;
 		String clave, estadistico;
 		Pattern patron;
@@ -174,29 +174,25 @@ public class Trabajador implements Runnable {
 	 */
 	private void estadisticasUsuarios(Matcher matcherLinea) {
 		// TODO:
-		final String msgCorreo = ".*msa.*from: <(([\\w-]+\\.[\\w-]*)@[AZa-z0-9]+(\\.[AZa-z0-9]+)*(\\.[A-Za-z]{2,}))";
-		final String traza = matcherLinea.group(0); // Traza completa
-		Pattern patron = Pattern.compile(msgCorreo);
 		// Ver si la traza se corresponde a una traza que indica que se ha enviado un
 		// mensaje
+		final String traza = matcherLinea.group(0);
+		Pattern patron = Pattern.compile(msgCorreo);
+		Matcher comparador = patron.matcher(traza);
+		String userName;
+		final AtomicInteger contadorAnterior;
+		if (comparador.find()) {
+			userName = comparador.group(2);
+			contadorAnterior = hmUsuarios.putIfAbsent(userName, new AtomicInteger(1));
+			if (contadorAnterior != null) {
+				contadorAnterior.incrementAndGet();
+			}
+
+		}
+
 		// En ese caso, guardar en el mapa hmUsuarios el nombre del usuario como clave y
 		// como valor el nº 1 si no existía esa clave, pues en el caso de que existiera
 		// hay que incrementar el valor
-		// comparamos la traza con el patron
-		Matcher comparador = patron.matcher(traza);
-		final AtomicInteger contadorAnterior;
-		String usuario;
-		if (comparador.find()) {
-			// si casa, entonces actualizar el mapa hmUsuarios
-			// la clave del mapa hmUsuarios es el nombre del usuario
-			// el valor del mapa hmUsuarios es el nº de correos enviados por el usuario
-			// si no existe el valor del contador es 1, pero si existe, se recupera el valor
-			// y se incrementa
-			usuario = comparador.group(2);
-			contadorAnterior = hmUsuarios.putIfAbsent(usuario, new AtomicInteger(1));
-			if (contadorAnterior != null)
-				contadorAnterior.incrementAndGet();
-		}
 
 	}
 
