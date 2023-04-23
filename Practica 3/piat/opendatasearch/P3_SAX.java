@@ -2,6 +2,7 @@ package piat.opendatasearch;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,9 +31,12 @@ public class P3_SAX {
 	private static final String argumento2 = ".*\\.xsd$";
 	private static final String argumento3 = ".*\\.txt$";
 
+	private static List<String> listaURL = new ArrayList<String>();
+	private static Map<String, Map<String, String>> mDatasets = null;
+	private static String sNombreConcept = null;
+
 	public static void main(String[] args) throws SAXException, ParserConfigurationException, IOException {
-		// *********************************************************************************
-		// */
+
 		// PASO 1: Verificar nº de argumentos correcto
 
 		if (args.length != 4) {// se asegura de que se han introducido 4 argumentos
@@ -42,7 +46,7 @@ public class P3_SAX {
 			mostrarUso(mensaje);
 			System.exit(1);
 		}
-		// verifica que los argumentos tienen la estructura correcta
+
 		if (args[0].matches(argumento0) &&
 				args[1].matches(argumento1) &&
 				args[2].matches(argumento2) &&
@@ -51,8 +55,7 @@ public class P3_SAX {
 		} else {
 			System.out.println("Los argumentos no son correctos");
 		}
-		// verificar que el argumento 1 y 2 corresponde con el path de un fichero
-		// que tiene permiso de lectura
+
 		String path1 = args[1];
 		String path2 = args[2];
 		File file1 = new File(path1);
@@ -64,9 +67,6 @@ public class P3_SAX {
 			System.out.println("NO se tiene permiso de lectura sobre el archivo");
 		}
 
-		// verificar que el argumento 3 corresponde con el path de un fichero que
-		// tiene permiso de escritura
-
 		String path3 = args[3];
 		File ficheroSalida = new File(path3);
 
@@ -75,21 +75,27 @@ public class P3_SAX {
 		} else {
 			System.out.println("NO se tiene permiso de escritura sobre el archivo");
 		}
-		// ***********************************************************************************
-		// */
-		ManejadorXML manejadorXML = new ManejadorXML(args[0]);
+		// Paso 2:
 
-		SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
+		ManejadorXML manejador = new ManejadorXML(args[0]);
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		factory.setNamespaceAware(true);
 
-		saxParser.parse(file1, manejadorXML);
+		SAXParser parser = factory.newSAXParser();
+		parser.parse(file1, manejador);
 
-		List<String> listaConcpets = new ArrayList<String>();
+		listaURL = manejador.getConcepts();
 
-		listaConcpets = manejadorXML.getConcepts();
+		sNombreConcept = manejador.getLabel();
 
-		System.out.println(listaConcpets + " llegue hasta aqui"); // PARA DEBUGUEAR
+		mDatasets = manejador.getDatasets();
 
-		Map<String, Map<String, String>> mapaDatashet = manejadorXML.getDatasets();
+		System.out.println(listaURL.toString());
+		System.out.println(sNombreConcept);
+		System.out.println(mDatasets.toString());
+
+		// Paso 3:
+		PrintWriter pwSalida = new PrintWriter(ficheroSalida);
 
 		// Volcar al fichero de salida los datos en el formato XML especificado por
 		// ResultadosBusquedaP3.xsd

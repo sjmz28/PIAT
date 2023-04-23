@@ -2,6 +2,7 @@ package piat.opendatasearch;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sara Jiménez Muñoz 51512521
@@ -14,8 +15,6 @@ import java.util.List;
  *
  */
 public class GenerarXML {
-
-	private static final String conceptPattern = "\n\t\t\t<concept> #ID# </concept>";
 
 	private String sXMLIntro = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 			"<searchResults" + "/t" + "xmlns=\"http://www.piat.dte.upm.es/ResultadosBusquedaP3.xsd\" \r\n" +
@@ -56,45 +55,51 @@ public class GenerarXML {
 		sbSalida.append("\n\t\t<concepts>");
 
 		for (String unConcepto : lConcepts) {
-			sbSalida.append("\t" + conceptPattern.replace("#IDCONCEPT#", unConcepto));
+			sbSalida.append("\t" + sXMLConcept.replace("#IDCONCEPT#", unConcepto));
 		}
 		sbSalida.append("\n\t\t</concepts>");
 
 		return sbSalida.toString();
 	}
 
-	private String datasetOutput (Map <String, HashMap<String, String>> mDatasets){
+	private String datasetOutput(Map<String, HashMap<String, String>> mDatasets) {
 		// DATASETS OUTPUT
 		StringBuilder sbTotalDataset = new StringBuilder();
 		StringBuilder sbDataset = new StringBuilder();
 		String contenido;
 
-		for(Strinf idDataset : mDatasets.keySet()) {
+		for (String idDataset : mDatasets.keySet()) {
 
-		//TITLE
-			if(mDatasets.get(idDataset).containsKey("title")) {
-				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "title").replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("title")));
-			}
-			else{
-				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "title").replace("#CONTENIDOELEMENTO#", " "));
-			}
-		
-		//DESCRIPTION
-			if(mDatasets.get(idDataset).containsKey("description")) {
-				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "description").replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("description")));
-			}
-		
-		//THEME
-			if(mDatasets.get(idDataset).containsKey("theme")) {
-				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "theme").replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("theme")));
+			// TITLE
+			if (mDatasets.get(idDataset).containsKey("title")) {
+				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "title").replace("#CONTENIDOELEMENTO#",
+						mDatasets.get(idDataset).get("title")));
+			} else {
+				sbDataset.append(
+						"\t\t" + sXMLElemento.replace("#ELEMENTO#", "title").replace("#CONTENIDOELEMENTO#", " "));
 			}
 
-		contenido = sbDataset.toString();
-		sbDataset.setLength(0);
-		sbTotalDataset.append(sXMLDataset.replace("#IDDATASET#", idDataset).replace("#CONTENIDODATASET#", contenido));
+			// DESCRIPTION
+			if (mDatasets.get(idDataset).containsKey("description")) {
+				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "description")
+						.replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("description")));
+			}
+
+			// THEME
+			if (mDatasets.get(idDataset).containsKey("theme")) {
+				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "theme").replace("#CONTENIDOELEMENTO#",
+						mDatasets.get(idDataset).get("theme")));
+			}
+
+			contenido = sbDataset.toString();
+			sbDataset.setLength(0);
+			sbTotalDataset
+					.append(sXMLDataset.replace("#IDDATASET#", idDataset).replace("#CONTENIDODATASET#", contenido));
+		}
 
 		return sbTotalDataset.toString();
-		}
+
+	}
 
 	public String generar(Map<String, HashMap<String, String>> mDatasets, List<String> lConcepts, String codigo,
 			String contenido) {

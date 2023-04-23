@@ -92,6 +92,10 @@ public class ManejadorXML extends DefaultHandler implements ParserCatalogo {
 		return lConcepts;
 	}
 
+	public String getLabel() {
+		return sNombreCategoria;
+	}
+
 	/**
 	 * <code><b>getDatasets</b></code>
 	 * 
@@ -207,7 +211,7 @@ public class ManejadorXML extends DefaultHandler implements ParserCatalogo {
 				idDataset = null;
 
 				for (int i = 0; i < attributes.getLength(); i++) {
-					idDataset = attributes.getValue(i);
+					idDataset = attributes.getValue(i); // TODO: mirar como funcona esto
 				}
 				break;
 
