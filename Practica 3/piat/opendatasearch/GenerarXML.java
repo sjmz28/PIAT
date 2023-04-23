@@ -16,7 +16,14 @@ public class GenerarXML {
 
 	private static final String conceptPattern = "\n\t\t\t<concept> #ID# </concept>";
 
+	private String sXMLIntro = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
+					"<searchResults"+ "/t" + "xmlns=\"http://www.piat.dte.upm.es/ResultadosBusquedaP3.xsd\" \r\n" +
+					"xmls:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \r\n" +
+					"xsi:schemaLocation=\"http://www.piat.dte.upm.es/ResultadosBusquedaP3.xsd ResultadosBusquedaP3.xsd \" >\n" +
+					"<summary>"+ "\n"
+
 	/**
+	 * 
 	 * Método que deberá ser invocado desde el programa principal
 	 * 
 	 * @param Colecciones con la información obtenida del documento XML de entrada
