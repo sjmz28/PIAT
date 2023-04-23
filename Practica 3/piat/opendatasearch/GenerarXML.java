@@ -36,7 +36,10 @@ public class GenerarXML {
 			"</searchResults>";
 
 	private String sXMLConcept = "<concept id = \"" + "#ID#" + "\">\n";
-	private String sXMLDataset = "<dataset id = \"" + "IDDATASET#" + "\">\n";
+
+	private String sXMLDataset = "<dataset id = \"" + "IDDATASET#" + "\">\n" +
+			"#CONTENIDODATASET#" + "\t\t</dataset>\n";
+
 	private String sXMLElemento = "<#ELEMENTO> #CONTENIDOELEMENTO# </#ELEMENTO>\n";
 
 	/**
@@ -68,28 +71,43 @@ public class GenerarXML {
 
 		for(Strinf idDataset : mDatasets.keySet()) {
 
+		//TITLE
 			if(mDatasets.get(idDataset).containsKey("title")) {
 				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "title").replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("title")));
 			}
 			else{
-				
+				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "title").replace("#CONTENIDOELEMENTO#", " "));
 			}
-	}
+		
+		//DESCRIPTION
+			if(mDatasets.get(idDataset).containsKey("description")) {
+				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "description").replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("description")));
+			}
+		
+		//THEME
+			if(mDatasets.get(idDataset).containsKey("theme")) {
+				sbDataset.append("\t\t" + sXMLElemento.replace("#ELEMENTO#", "theme").replace("#CONTENIDOELEMENTO#", mDatasets.get(idDataset).get("theme")));
+			}
 
-	public static String generar(List<String> lConcepts) {
+		contenido = sbDataset.toString();
+		sbDataset.setLength(0);
+		sbTotalDataset.append(sXMLDataset.replace("#IDDATASET#", idDataset).replace("#CONTENIDODATASET#", contenido));
 
-		// CONCEPTS OUTPUT
+		return sbTotalDataset.toString();
+		}
+
+	public String generar(Map<String, HashMap<String, String>> mDatasets, List<String> lConcepts, String codigo,
+			String contenido) {
 
 		StringBuilder sbSalida = new StringBuilder();
-		sbSalida.append("\n\t\t<concepts>");
 
-		for (String unConcepto : lConcepts) {
-			sbSalida.append("\t" + conceptPattern.replace("#IDCONCEPT#", unConcepto));
-		}
-		sbSalida.append("\n\t\t</concepts>");
+		sbSalida.append(sXMLIntro.replace("#QUERY#", codigo).replace("#NUMCONCEPTS#", String.valueOf(lConcepts.size()))
+				.replace("#NUMDATASETS#", String.valueOf(mDatasets.size())));
+
+		sbSalida.append(sXMLResult.replace("#CONCEPTS#", conceptsOuput(lConcepts))
+				.replace("#DATASETS#", datasetOutput(mDatasets)).replace("#CONTENIDODATASET#", contenido));
 
 		return sbSalida.toString();
-
 	}
 
 }
