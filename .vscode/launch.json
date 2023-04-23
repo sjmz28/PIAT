@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "P3_SAX",
+            "request": "launch",
+            "mainClass": "piat.opendatasearch.P3_SAX",
+            "projectName": "PIAT_6fb57f63",
+            "args": ["0016-018FFFF",
+            "./Practica 3/catalogo/catalogo.xml",
+            "./Practica 3/catalogo/catalogo.xsd",
+            "./Practica 3/Salida.txt"]               
+        }
+    ]
+}
